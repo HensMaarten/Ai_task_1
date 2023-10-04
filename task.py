@@ -14,7 +14,7 @@ def format_solution(solution):
     word1_numbers = "".join(str(solution[letter]) for letter in word1)
     word2_numbers = "".join(str(solution[letter]) for letter in word2)
     answer_numbers = "".join(str(solution[letter]) for letter in answer)
-    return f"{word1} {word1_numbers}\n + \n{word2} {word2_numbers}\n = \n {answer} {answer_numbers}"
+    return f"{word1} {word1_numbers}\n+ \n{word2} {word2_numbers}\n= \n{answer} {answer_numbers}"
 
 def solve(word1, word2, answer):
     if len(word1) < 9 and len(word2) < 9 and len(answer) < 9:
