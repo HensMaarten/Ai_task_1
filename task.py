@@ -17,22 +17,25 @@ def format_solution(solution):
     return f"{word1} {word1_numbers}\n+ \n{word2} {word2_numbers}\n= \n{answer} {answer_numbers}"
 
 def solve(word1, word2, answer):
-    if len(word1) < 9 and len(word2) < 9 and len(answer) < 9:
-        letters = list(set(word1 + word2 + answer))
-        if len(letters) <= 9:
-            first_letter_set = set([word1[0], word2[0], answer[0]])
-            domains = {letter: (range(1, 10) if letter in first_letter_set else range(10)) for letter in letters}
-            constraints = [(letters, constraint_unique), (letters, constraint_add)]
-            problem = CspProblem(tuple(letters), domains, constraints)
-            solutions = backtrack(problem)
-            if solutions:
-                return format_solution(solutions)
+    if len(word1) > 0 and len(word2) > 0 and len(answer) > 0:
+        if len(word1) < 9 and len(word2) < 9 and len(answer) < 9:
+            letters = list(set(word1 + word2 + answer))
+            if len(letters) <= 9:
+                first_letter_set = set([word1[0], word2[0], answer[0]])
+                domains = {letter: (range(1, 10) if letter in first_letter_set else range(10)) for letter in letters}
+                constraints = [(letters, constraint_unique), (letters, constraint_add)]
+                problem = CspProblem(tuple(letters), domains, constraints)
+                solutions = backtrack(problem)
+                if solutions:
+                    return format_solution(solutions)
+                else:
+                    return "No solution found."
             else:
-                return "No solution found."
+                return "No solution found because there are more than 9 different letters."
         else:
-            return "No solution found because there are more than 9 different letters."
+            return "No solution found because the words are too long or too short."
     else:
-        return "No solution found because the words are too long or too short."
+            return "Enter all the fields before pressing the solve button!"
 
 st.title("Solve Cryptoarithmetic Puzzles!")
 st.subheader("By Maarten Hens")
