@@ -18,7 +18,7 @@ def format_solution(solution):
 
 def solve(word1, word2, answer):
     if len(word1) < 9 and len(word2) < 9 and len(answer) < 9:
-        letters = tuple(list(set(word1 + word2 + answer)))
+        letters = list(set(word1 + word2 + answer))
         if len(letters) <= 9:
             first_letter_set = set([word1[0], word2[0], answer[0]])
             domains = {letter: (range(1, 10) if letter in first_letter_set else range(10)) for letter in letters}
