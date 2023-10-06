@@ -22,7 +22,7 @@ def solve(word1, word2, answer):
             letters = list(set(word1 + word2 + answer))
             if len(letters) <= 9:
                 first_letter_set = set([word1[0], word2[0], answer[0]])
-                domains = {letter: (range(1, 10) if letter in first_letter_set else range(10)) for letter in letters}
+                domains = {letter: (list(range(1, 10)) if letter in first_letter_set else list(range(10))) for letter in letters}
                 constraints = [(letters, constraint_unique), (letters, constraint_add)]
                 problem = CspProblem(tuple(letters), domains, constraints)
                 solutions = backtrack(problem)
